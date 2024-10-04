@@ -83,9 +83,9 @@ var timer = 0;
 
 // set of users answers
 var arr;
-var correctGuess = 0;
-var wrongAnswersCount = 0;
-var alreadyExists = 0;
+var correctGuess;
+var wrongAnswersCount;
+var alreadyExists;
 
 // add event to start playing 
 resetButton.addEventListener("click", () => {
@@ -106,6 +106,11 @@ resetButton.addEventListener("click", () => {
     // dont allow user to restart while playing 
     resetButton.disabled = true;
 
+    // initialaize values
+    wrongAnswersCount = 0;
+    alreadyExists = 0;
+    correctGuess = 0;
+
 
 
     // due to clouser in JS resetbutton can have access to the timer function whenever its triggered even if Starting button isnt invoked
@@ -114,25 +119,11 @@ resetButton.addEventListener("click", () => {
         // disable it so he dont guess when Time is already done
         inputfield.disabled = true;
 
-        // reset verbose and Wronganswercount
-        verbose.innerHTML = "";
-        wrongAnswersCount = 0;
-        alreadyExists = 0;
-
-        // reset arr 
-        arr = [];
-        
         // display time endded
         verbose.innerHTML= `Time ended`;
 
         // reset interval repetation
         clearInterval(timerInterval);
-
-        // reset timer
-        timer = 30;
-
-        // reset correct guesses
-        correctGuess = 0;
 
         resetButton.disabled = false;
 
@@ -190,6 +181,10 @@ resetButton.addEventListener("click", () => {
 
 
 });
+
+
+// i have a weird case where once the user ended weather he won or lost the correct guess will be saved and once he replay it will tell the user that he already choose that but then add it to the table as a correct guesss 
+// no idea bro
 
 
 
